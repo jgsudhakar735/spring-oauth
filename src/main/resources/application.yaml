@@ -1,0 +1,50 @@
+
+# To Run the application in Debug mode
+debug: false
+
+# Server Port Number
+server:
+  port: 8888
+  servlet:
+    context-path: /spring-oauth
+
+# Log Level
+logging:
+  level:
+    web: DEBUG
+    sql: INFO
+    
+# Using Spring Profile , Based on the flag this will pick up the data source and execute the queries if any
+spring:
+# Disable Dev Tools by setting the value as false
+  devtools:
+    add-properties: false
+  profiles:
+    active:
+    - dev
+  main:
+    banner-mode: "off"
+
+# Spring Security Resource ID Name
+custom:
+  spring:
+    resource_id = "RESOURCE_ID"
+    
+---     
+      
+#Spring Data Source Configuration & Flyway Configuration
+spring:
+  profiles: dev
+  datasource:
+    initialization-mode: always 
+    username: root
+    password: tagit
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oauth2?userSSL=false
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+    

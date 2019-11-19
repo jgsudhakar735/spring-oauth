@@ -1,0 +1,14 @@
+{
+	"properties": [
+		{
+			"name": "custom",
+			"type": "java.lang.String",
+			"description": "All Spring Security Related Custom Paramater goes here"
+		},
+		{
+			"name": "custom.spring.resource_id",
+			"type": "java.lang.String",
+			"description": "Resource ID to exchange the Token / Validate a Token"
+		}
+	]
+}

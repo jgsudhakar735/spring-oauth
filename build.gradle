@@ -1,0 +1,75 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+}
+
+group = 'com.jgsudhakar.oauth'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext {
+	flywayVersion = "4.2.0" 
+}
+
+// define Jar Name
+jar {
+	baseName = 'spring-oauth'
+  	version =  '1.0'
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
+	//implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.4.0.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
+   implementation group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.2.1.RELEASE'
+	
+    implementation 'org.flywaydb:flyway-core:4.2.0'
+    
+    // swagger configuration
+    
+  //  implementation 'io.springfox:springfox-swagger2:2.9.2'
+	//implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	
+	implementation group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '2.0.0.RELEASE'
+	
+    
+    // Apache Commons Libraries 
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    
+
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'org.springframework.security:spring-security-test'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+//	useJUnitPlatform()
+}
