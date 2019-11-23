@@ -32,23 +32,32 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.RC2")
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+	implementation 'org.springframework.cloud:spring-cloud-starter-security'
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation 'com.google.code.gson:gson:2.8.6'
+	
 	// implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
 	//implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.4.0.RELEASE'
 	// https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
-   implementation group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.2.1.RELEASE'
 	
     implementation 'org.flywaydb:flyway-core:4.2.0'
     
     // swagger configuration
     
-  //  implementation 'io.springfox:springfox-swagger2:2.9.2'
+  	//implementation 'io.springfox:springfox-swagger2:2.9.2'
 	//implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 	
 	implementation group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '2.0.0.RELEASE'
@@ -67,6 +76,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
 
