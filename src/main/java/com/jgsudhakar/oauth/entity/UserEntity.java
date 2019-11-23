@@ -5,15 +5,19 @@ package com.jgsudhakar.oauth.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,43 +37,58 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class UserEntity extends CommonEntity implements Serializable{
-
+	
 	/**
 	 * Default Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="USER_KEY")
-	private Long userKey;
-	
-	@Column(name="USER_NAME")
-	private String userName;
-	
-	@Column(name="USER_PASSWORD")
-	private String password;
-	
-	@Column(name="USER_STATUS")
-	private String userStatus;
-	
-	@Column(name = "PASSWORD_STATUS")
-	private String passwordStatus;
 
-	@Column(name = "FAILED_LOGIN_ATTEMPTS")
-	private Integer failedLoginCount;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LAST_LOGIN")
-	private Date last_login;
-	
-	private boolean enabled;
-	
-	private boolean accountNonExpired;
-	
-	private boolean credentialsNonExpired;
-	
-	private boolean accountNonLocked;	
-	
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private int id;
+
+    @Column(name = "failed_login_attempts")
+    private Integer failedLoginAttemptCount;
+
+    @Column(name = "last_login")
+    private Date lastLoginDate;
+
+    @Column(name = "user_name")
+    private String name;
+    
+    @Column(name = "user_password")
+    private String password;
+    
+    @Column(name = "password_status")
+    private String passwordStatus;
+    
+    @Column(name = "accountNonExpired")
+    private String accountNonExpired;
+    
+    @Column(name = "accountNonLocked")
+    private String accountNonLocked;
+    
+    @Column(name = "user_status")
+    private int active;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "role_user", joinColumns =
+    @JoinColumn(name = "user_id"), inverseJoinColumns =
+    @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+
+    public UserEntity (UserEntity entity) {
+    	this.name = entity.getName();
+    	this.active = entity.getActive();
+    	this.password = entity.getPassword();
+    	this.passwordStatus = entity.getPasswordStatus();
+    	this.id = entity.getId();
+    	this.lastLoginDate = entity.getLastLoginDate();
+    	this.failedLoginAttemptCount = entity.getFailedLoginAttemptCount();
+        this.roles = entity.roles;
+        this.accountNonExpired = entity.accountNonExpired;
+        this.accountNonLocked = entity.accountNonLocked;
+    }
 }
