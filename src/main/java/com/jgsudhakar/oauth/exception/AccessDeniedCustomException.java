@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
  */
 @Component
 @Log4j2
-public class CustomExceptionHandler implements AccessDeniedHandler {
+public class AccessDeniedCustomException implements AccessDeniedHandler {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
