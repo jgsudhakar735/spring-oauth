@@ -1,0 +1,590 @@
+{
+	"info": {
+		"_postman_id": "c71e6ae3-609d-45c7-a12c-ca5be36aeec8",
+		"name": "OAuth_API_Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_TOKEN PASSWORD",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "mpin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mobile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Sanvi",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Sanvi",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "mobile",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"oauth",
+						"token"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE AUTHOR AND BOOKS",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NDc5MjY5NywiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzYwMCwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIzNDNiODc3ZC1mMWUzLTRlNjgtYmEyNS1hNGQ1ZjViMTI4ZTAiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.BmzakMoAbHuytY0ieYJTboXtDvn-yv6X73vOjTTsnlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"authorName\":\"Sriyaan\",\n\t\"authorEmail\":\"jgsudhakar735@gmail.com\",\n\t\"authorStatus\":\"A\",\n\t\"bookList\":[\n\t\t\t{\n\t\t\t\t\"bookName\":\"Mougli\",\n\t\t\t\t\"bookStatus\":\"A\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"bookName\":\"Narnia\",\n\t\t\t\t\"bookStatus\":\"A\"\n\t\t\t}\n\t\t\t]\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/author/1.0/saveAuthor",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"author",
+						"1.0",
+						"saveAuthor"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET_TOKEN PASSWORD 8282",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "web",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "mpin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Sriyaan",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Sriyaan",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "READ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8282/spring-oauth-inmemory/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"spring-oauth-inmemory",
+						"oauth",
+						"token"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET LIST",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiUkVTT1VSQ0VfSUQiXSwidXNlcl9uYW1lIjoiU2FudmkiLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNTc0NjYwNTM3LCJhdXRob3JpdGllcyI6WyJSRUFEIiwiUk9MRV9VU0VSIl0sImp0aSI6IjM0ZmEzODZiLWYzOTYtNDI5Yy1iMTEyLTRjZTc5NWJiMDMzYyIsImNsaWVudF9pZCI6Im1vYmlsZSJ9.PFEJLVjrLf6ujYoCw_qhxU4tTDZlwZmzeTFX1W7gG3E",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/1.0/getname",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"1.0",
+						"getname"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET AUTHOR LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NDc5MjY5NywiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzYwMCwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIzNDNiODc3ZC1mMWUzLTRlNjgtYmEyNS1hNGQ1ZjViMTI4ZTAiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.BmzakMoAbHuytY0ieYJTboXtDvn-yv6X73vOjTTsnlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/author/1.0/retriveAuthors",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"author",
+						"1.0",
+						"retriveAuthors"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET AUTHOR DETAILS",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NDc5MjY5NywiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzYwMCwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIzNDNiODc3ZC1mMWUzLTRlNjgtYmEyNS1hNGQ1ZjViMTI4ZTAiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.BmzakMoAbHuytY0ieYJTboXtDvn-yv6X73vOjTTsnlQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/author/1.0/getAuthorDetails/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"author",
+						"1.0",
+						"getAuthorDetails",
+						"1"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "CHECK_TOKEN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer 71d96f5c-eba4-48de-b676-50db20dc18fb"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8282/spring-oauth-inmemory/oauth/check_token?token=57343dd9-5204-44fc-87da-97112959f40d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"spring-oauth-inmemory",
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "asadssd",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "57343dd9-5204-44fc-87da-97112959f40d"
+						}
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "CHECK_TOKEN Spring-OAuth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer 71d96f5c-eba4-48de-b676-50db20dc18fb"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/oauth/check_token?token=8cd1131d-f5f7-42e0-83ba-b57819132ee1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "asadssd",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "8cd1131d-f5f7-42e0-83ba-b57819132ee1"
+						}
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET LIST USERS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NDcwMjU2NCwiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzYwMCwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIyNGZjYTRiMS1kMmNmLTQ0ZDAtYmJkZS0yMGMyMGU1OTUzYWMiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.fYxQdnXEUdwb_DTWEoFa3U9UzxAa2P2xpPYZaFy5SR8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"Sudhakar\",\n\t\"password\":\"password\",\n\t\"authorities\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/users/user",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"users",
+						"user"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "POST NAME",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "0a71a508-2d06-418b-8a22-54f79ade4d0f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8888/spring-oauth/1.0/name",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"spring-oauth",
+						"1.0",
+						"name"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		},
+		{
+			"name": "GET_TOKEN_USING_CLIENT_CREDENTIALS",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "devglan-secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "devglan-client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Sudhakar",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Sudhakar",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "crmSuperSecret",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8888/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "This api will be used to get the OAuth Token"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
