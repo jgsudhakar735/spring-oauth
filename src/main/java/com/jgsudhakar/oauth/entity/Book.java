@@ -34,7 +34,7 @@ public class Book extends CommonEntity implements Serializable{
 	private static final long serialVersionUID = 4039242600298566365L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
 	private Long bookId;
 	
@@ -48,8 +48,8 @@ public class Book extends CommonEntity implements Serializable{
 	private Long authorId;
 	
 	/** The mxim user mtb. */
-	@Basic(fetch=FetchType.LAZY)
-	@ManyToOne(fetch=FetchType.LAZY,optional=true)
+	@Basic(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,optional=true)
 	@JoinColumn(name="AUTHOR_ID",referencedColumnName="AUTHOR_ID")
 	private Author author;
 }

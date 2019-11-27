@@ -36,7 +36,7 @@ public class Author extends CommonEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AUTHOR_ID")
 	private Long authorId;
 	
@@ -49,7 +49,7 @@ public class Author extends CommonEntity implements Serializable{
 	@Column(name = "AUTHOR_STATUS")
 	private String authorStatus;
 	
-	@Basic(fetch=FetchType.LAZY)
-	@OneToMany(mappedBy="author",fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@Basic(fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="author",fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Book> bookList = new ArrayList<Book>();
 }

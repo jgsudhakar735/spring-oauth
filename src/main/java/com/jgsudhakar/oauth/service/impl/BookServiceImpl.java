@@ -3,14 +3,25 @@
  */
 package com.jgsudhakar.oauth.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jgsudhakar.oauth.entity.Author;
+import com.jgsudhakar.oauth.entity.Book;
+import com.jgsudhakar.oauth.modal.AuthorDTO;
 import com.jgsudhakar.oauth.modal.BookDTO;
 import com.jgsudhakar.oauth.repository.BookRepository;
+import com.jgsudhakar.oauth.service.AuthorService;
 import com.jgsudhakar.oauth.service.BookService;
+import com.jgsudhakar.oauth.util.JwtTokenUtil;
 
 /**
  * @author Sudhakar Tangellapalli
@@ -21,18 +32,46 @@ import com.jgsudhakar.oauth.service.BookService;
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
+	
+	@Autowired
+	private AuthorService authorService;
+	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 
 	@Override
 	public void saveBook(BookDTO bookDTO) {
-		
+		AuthorDTO authorDetails = authorService.getAuthorDetails(bookDTO.getAuthorId());
+		if(null != authorDetails) {
+			Author author = new Author();
+			BeanUtils.copyProperties(author, authorDetails);
+			Book book = new Book();
+			book.setAuthor(author);
+			book.setBookName(bookDTO.getBookName());
+			book.setBookStatus(bookDTO.getBookStatus());
+			book.setCreatedBy(jwtTokenUtil.getUserName());
+			book.setCreatedDate(new Date());
+			book.setUpdatedBy(jwtTokenUtil.getUserName());
+			book.setUpdatedDate(new Date());
+			bookRepository.save(book);
+		}
 
 	}
 
 	@Override
 	public List<BookDTO> retriveBooks() {
-		
-		return null;
+		List<BookDTO> bookDTOs = new ArrayList<>();
+		List<Book> authorsList = bookRepository.findAll();
+		Optional.ofNullable(authorsList).
+					orElse(Collections.emptyList()).
+								stream().
+									map(book -> {
+											BookDTO bookDTO = new BookDTO	();
+											BeanUtils.copyProperties(book, bookDTO);
+											return bookDTO;
+									}).collect(Collectors.toCollection(()-> bookDTOs));
+		return bookDTOs;
 	}
 
 	@Override

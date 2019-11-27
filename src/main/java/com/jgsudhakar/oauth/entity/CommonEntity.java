@@ -9,10 +9,15 @@ import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author sudhakar.t
  *
  */
+@Getter
+@Setter
 public class CommonEntity {
 
 	@Column(name = "CREATED_BY",nullable = false)
