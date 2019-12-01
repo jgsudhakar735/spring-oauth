@@ -46,7 +46,7 @@ public class UserEntity extends CommonEntity implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private int id;
+    private Long id;
 
     @Column(name = "failed_login_attempts")
     private Integer failedLoginAttemptCount;

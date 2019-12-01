@@ -31,8 +31,11 @@ public class Permission implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int roleId;
+    private Long permissionId;
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
 }

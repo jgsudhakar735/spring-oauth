@@ -37,6 +37,9 @@ public class Role implements Serializable{
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permission_role" ,
