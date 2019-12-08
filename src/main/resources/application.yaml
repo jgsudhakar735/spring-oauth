@@ -62,7 +62,7 @@ spring:
 server:
   ssl:
     key-store : classpath:jgsudhakar.keystore
-    enabled: true
+    enabled: false
     key-store-password: jgsudhakar
     key-alias: jgsudhakar
        

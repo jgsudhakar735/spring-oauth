@@ -1,6 +1,5 @@
 package com.jgsudhakar.oauth.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jgsudhakar.oauth.modal.UserDTO;
 import com.jgsudhakar.oauth.service.UserService;
 
 @RestController
@@ -24,8 +24,8 @@ public class UserController {
     @RequestMapping(value="/user", method = RequestMethod.GET)
 //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @PreAuthorize("hasAuthority('READ')")
-    public List listUser(){
-        return Arrays.asList("Sudhakar","Sample");
+    public List<UserDTO> listUser(){
+        return userService.retriveUsers();
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)

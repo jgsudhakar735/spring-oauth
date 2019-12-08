@@ -20,7 +20,7 @@ public class RoleDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int roleId;
+	private Long roleId;
 
 	private String name;
 

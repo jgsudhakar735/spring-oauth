@@ -68,6 +68,8 @@ public class MapperUtlity {
 		Role role = new Role();
 		role.setName(roleDTO.getName());
 		role.setDescription(roleDTO.getDescription());
+		if(roleDTO.getRoleId() != null && roleDTO.getRoleId() > 0)
+			role.setRoleId(roleDTO.getRoleId());
 		
 		return role;
 	}
