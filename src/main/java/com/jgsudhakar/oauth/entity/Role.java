@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +45,7 @@ public class Role implements Serializable{
     private String description;
     
     @ManyToMany(fetch = FetchType.EAGER)
+    @Cascade({CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinTable(name = "permission_role" ,
     					joinColumns = {
     							@JoinColumn(referencedColumnName = "id" , name = "role_id")

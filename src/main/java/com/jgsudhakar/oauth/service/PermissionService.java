@@ -15,13 +15,13 @@ import com.jgsudhakar.oauth.modal.PermissionDTO;
  */
 public interface PermissionService {
 
-	public void savePermission(PermissionDTO permissionDTO) throws OAuthServiceException;
+	public PermissionDTO savePermission(PermissionDTO permissionDTO) throws OAuthServiceException;
 	
 	public List<PermissionDTO> retrivePermissions() throws OAuthServiceException;
 	
 	public PermissionDTO getPermissionDetails(Long id) throws OAuthServiceException;
 	
-	public void updatePermission(PermissionDTO permissionDTO) throws OAuthServiceException;
+	public PermissionDTO updatePermission(PermissionDTO permissionDTO) throws OAuthServiceException;
 
 	public void deletePermission(Long id) throws OAuthServiceException;
 }

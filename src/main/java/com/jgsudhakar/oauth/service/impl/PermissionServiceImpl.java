@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.jgsudhakar.oauth.entity.Permission;
@@ -34,8 +35,12 @@ public class PermissionServiceImpl implements PermissionService {
 	MapperUtlity mapperUtility;
 
 	@Override
-	public void savePermission(PermissionDTO permissionDTO) throws OAuthServiceException {
-		permissionRepository.save(mapperUtility.convertToDataBaseEntity(permissionDTO));
+	public PermissionDTO savePermission(PermissionDTO permissionDTO) throws OAuthServiceException {
+		return mapperUtility.convertFromDataBaseEntity(
+				permissionRepository.save(
+						mapperUtility.convertToDataBaseEntity(permissionDTO)
+						)
+				);
 	}
 
 	@Override
@@ -52,19 +57,34 @@ public class PermissionServiceImpl implements PermissionService {
 	public PermissionDTO getPermissionDetails(Long id) throws OAuthServiceException {
 		Optional<Permission> findById = permissionRepository.findById(id);
 		if(!findById.isPresent())
-			throw new RecordNotExistException("404", "Permission Does Not Exist!");
+			throw new RecordNotExistException("Permission Does Not Exist!");
 
 		return mapperUtility.convertFromDataBaseEntity(findById.get());
 	}
 
 	@Override
-	public void updatePermission(PermissionDTO permissionDTO) throws OAuthServiceException {
-
+	public PermissionDTO updatePermission(PermissionDTO permissionDTO) throws OAuthServiceException {
+		Optional<Permission> findById = permissionRepository.findById(permissionDTO.getPermissionId());
+		if(!findById.isPresent())
+			throw new RecordNotExistException("Permission Does Not Exist!");
+		
+		Permission permission = findById.get();
+		permission.setDescription(permissionDTO.getDescription());
+		permissionRepository.save(permission);
+		
+		return permissionDTO;
 	}
 
 	@Override
 	public void deletePermission(Long id) throws OAuthServiceException {
-
+		try {
+			permissionRepository.deleteById(id);
+		} catch (Exception e) {
+			if(e instanceof DataIntegrityViolationException)
+				throw new OAuthServiceException("400", "Data Mapped to Child Tables!, Please delete those first");
+			
+			throw e;
+		}
 	}
 
 }
